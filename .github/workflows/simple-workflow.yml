@@ -24,6 +24,17 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      - name: Authenticate to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: set auto-install of extensions
+        run: az config set extension.use_dynamic_install=yes_without_prompt
+        
+      - name: attach workspace
+        run: az ml folder attach -w "abeeastmlws01" -g "rg-abe-east"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
