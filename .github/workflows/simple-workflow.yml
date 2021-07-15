@@ -34,7 +34,7 @@ jobs:
         run: az extension add -n ml -y
         
       - name: attach workspace
-        run: az ml folder attach -w "abeeastmlws01" -g "rg-abe-east"
+        run: az ml workspace list --resource-group rg-abe-east
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
