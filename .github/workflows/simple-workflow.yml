@@ -31,7 +31,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
       - name: set auto-install of extensions
-        run: az extension add -n ml -y
+        run: az config set extension.use_dynamic_install=yes_without_prompt
         
       - name: attach workspace
         run: az storage azcopy blob download -c abelandingzone0001 --account-name abeeastlake01 -s "/demos/auto-mpg.csv" -d "data/auto-mpg.csv"
